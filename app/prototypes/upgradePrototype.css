@@ -21,16 +21,9 @@
   gap: 0;
 }
 
-.prototype-brand-mark {
+.prototype-brand-logo {
   display: block;
   height: 32px;
-  width: 28px;
-}
-
-.prototype-brand-logotype {
-  display: block;
-  height: 18px;
-  margin-left: 4px;
   width: auto;
 }
 
@@ -488,6 +481,10 @@
   display: inline-grid;
   gap: 8px;
   grid-template-columns: 24px 1fr;
+}
+
+.prototype-summary-success {
+  margin-top: 0;
 }
 
 .prototype-success-copy {

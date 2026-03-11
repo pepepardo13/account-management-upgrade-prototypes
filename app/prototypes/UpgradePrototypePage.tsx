@@ -1,6 +1,7 @@
 import { useMemo, useState, type ReactNode } from "react";
 
 import "./upgradePrototype.css";
+import envatoLogoPng from "./assets/envato-logo.png";
 import {
   ExternalLinkIcon,
   PrototypeBadge,
@@ -44,10 +45,6 @@ const assets = {
     "https://www.figma.com/api/mcp/asset/e1819494-01b8-4c15-b27c-1b324433dcef",
   success:
     "https://www.figma.com/api/mcp/asset/c1b8d473-d309-4117-a038-e136f2617b48",
-  logoType:
-    "https://www.figma.com/api/mcp/asset/a8a65749-4f5b-47b4-bc4b-396715acdb98",
-  logoMark:
-    "https://www.figma.com/api/mcp/asset/0220c8a1-2ff8-4b70-b854-c566d65536b5",
   chevronDown:
     "https://www.figma.com/api/mcp/asset/bb5497cc-25ad-4210-833a-e9428f9cb8e3",
   back: "https://www.figma.com/api/mcp/asset/4fd32aec-0bf7-46b7-b0bb-aacfe4ae8849",
@@ -153,17 +150,13 @@ export function UpgradePrototypePage({
   const content = useMemo(() => getVariantContent(variant), [variant]);
   const total = formatPrice(billingCycle);
   const renewalCycle = formatRenewal(billingCycle);
+  const dividerBeforeCredit = variant === "A";
 
   return (
     <div className="prototype-page">
       <header className="prototype-topbar">
         <div className="prototype-brand">
-          <img alt="Envato" className="prototype-brand-mark" src={assets.logoMark} />
-          <img
-            alt="Envato"
-            className="prototype-brand-logotype"
-            src={assets.logoType}
-          />
+          <img alt="Envato" className="prototype-brand-logo" src={envatoLogoPng} />
         </div>
         <div className="prototype-user">
           <span>Juan</span>
@@ -240,14 +233,19 @@ export function UpgradePrototypePage({
               </h3>
               <SummaryRow label="Price" value="$00.00/year" />
               <SummaryRow label="Tax" value="$0.00/year" />
-              <div className="prototype-divider" />
+              {dividerBeforeCredit && <div className="prototype-divider" />}
               <SummaryRow
                 label="Credit from your current plan"
                 value="-$0.00"
                 positive={true}
                 helper="200 days remaining in your billing period"
               />
-              {content.showMidSuccess && <InlineSuccess />}
+              {!dividerBeforeCredit && <div className="prototype-divider" />}
+              {content.showMidSuccess && (
+                <div className="prototype-summary-success">
+                  <InlineSuccess />
+                </div>
+              )}
             </section>
 
             <section className="prototype-section">
