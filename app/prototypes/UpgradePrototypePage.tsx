@@ -1,14 +1,10 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, type ReactNode } from "react";
 
 import "./upgradePrototype.css";
 import {
-  ChevronDownIcon,
-  ChevronLeftIcon,
   ExternalLinkIcon,
-  GlobeIcon,
   PrototypeBadge,
   PrototypeButton,
-  PrototypeNotice,
   PrototypeRadioCard,
 } from "./prototypeDesignSystem.tsx";
 
@@ -34,6 +30,39 @@ const footerLinks = [
 
 const socialItems = ["yt", "tt", "fb", "x", "pn", "ig"];
 
+const assets = {
+  youtube: "https://www.figma.com/api/mcp/asset/89a2f678-858b-4bf6-945e-0825efe3f5d7",
+  tiktok: "https://www.figma.com/api/mcp/asset/1a27f991-c41f-4f68-9db7-1873fa0f4ba8",
+  x: "https://www.figma.com/api/mcp/asset/52dae60f-cace-44d7-861d-f3ad5dea8bf2",
+  facebook: "https://www.figma.com/api/mcp/asset/f896844c-0903-4aae-b790-2fd7123a3881",
+  pinterest:
+    "https://www.figma.com/api/mcp/asset/ae09cbc9-8931-445c-b8de-eaa2a392b606",
+  instagram:
+    "https://www.figma.com/api/mcp/asset/f6ad9571-3194-46f9-bdc6-6343b4c0edab",
+  globe: "https://www.figma.com/api/mcp/asset/607b4b28-0155-46e6-9007-3a27272ff1ca",
+  footerChevron:
+    "https://www.figma.com/api/mcp/asset/e1819494-01b8-4c15-b27c-1b324433dcef",
+  success:
+    "https://www.figma.com/api/mcp/asset/c1b8d473-d309-4117-a038-e136f2617b48",
+  logoType:
+    "https://www.figma.com/api/mcp/asset/a8a65749-4f5b-47b4-bc4b-396715acdb98",
+  logoMark:
+    "https://www.figma.com/api/mcp/asset/0220c8a1-2ff8-4b70-b854-c566d65536b5",
+  chevronDown:
+    "https://www.figma.com/api/mcp/asset/bb5497cc-25ad-4210-833a-e9428f9cb8e3",
+  back: "https://www.figma.com/api/mcp/asset/4fd32aec-0bf7-46b7-b0bb-aacfe4ae8849",
+  info: "https://www.figma.com/api/mcp/asset/918e8e9d-4c84-41f4-8f1f-b1571c82c2ee",
+};
+
+const socialAssets = [
+  assets.youtube,
+  assets.tiktok,
+  assets.facebook,
+  assets.x,
+  assets.pinterest,
+  assets.instagram,
+];
+
 function getVariantContent(variant: UpgradeVariant) {
   return {
     showTopSuccess: variant === "C",
@@ -48,6 +77,35 @@ function formatPrice(cycle: BillingCycle) {
 
 function formatRenewal(cycle: BillingCycle) {
   return cycle === "monthly" ? "monthly" : "yearly";
+}
+
+function InlineSuccess() {
+  return (
+    <div className="prototype-success-inline">
+      <img alt="" className="prototype-icon-24" src={assets.success} />
+      <div className="prototype-success-copy">
+        <p className="prototype-success-title">
+          Your Plus individual plan will start right away!
+        </p>
+        <p className="prototype-success-body">
+          You can keep using your existing downloads and licenses.
+        </p>
+      </div>
+    </div>
+  );
+}
+
+function InfoBanner({ children }: { children: ReactNode }) {
+  return (
+    <div className="prototype-info-banner">
+      <div className="prototype-info-content">
+        <div className="prototype-info-icon-wrap">
+          <img alt="" className="prototype-icon-24" src={assets.info} />
+        </div>
+        <div className="prototype-info-copy">{children}</div>
+      </div>
+    </div>
+  );
 }
 
 function SummaryRow({
@@ -100,37 +158,41 @@ export function UpgradePrototypePage({
     <div className="prototype-page">
       <header className="prototype-topbar">
         <div className="prototype-brand">
-          <span className="prototype-brand-mark">e</span>
-          <span>envato</span>
+          <img alt="Envato" className="prototype-brand-mark" src={assets.logoMark} />
+          <img
+            alt="Envato"
+            className="prototype-brand-logotype"
+            src={assets.logoType}
+          />
         </div>
         <div className="prototype-user">
-          Juan <ChevronDownIcon className="ds-icon ds-icon--inline" />
+          <span>Juan</span>
+          <img alt="" className="prototype-icon-16" src={assets.chevronDown} />
         </div>
       </header>
 
       <main className="prototype-shell">
         <div className="prototype-content">
           <button className="prototype-back" type="button" aria-label="Go back">
-            <ChevronLeftIcon className="ds-icon" />
+            <img alt="" className="prototype-icon-24" src={assets.back} />
           </button>
 
           <div className="prototype-title-block">
             <h1 className="prototype-title">Upgrade to the Plus Individual plan</h1>
-            {content.showTopSuccess && (
-              <PrototypeNotice
-                tone="success"
-                title="Your Plus individual plan will start right away!"
-              >
-                You can keep using your existing downloads and licenses.
-              </PrototypeNotice>
-            )}
+            {content.showTopSuccess && <InlineSuccess />}
           </div>
 
           <div className="prototype-stack">
-            <PrototypeNotice title="Current plan: Core Individual, renews monthly.">
-              Your next payment of $33.00 (excluding tax and discounts) is
-              scheduled for Oct 30, 2025, in 30 days.
-            </PrototypeNotice>
+            <InfoBanner>
+              <p className="prototype-banner-title">
+                Current plan: Core Individual, renews monthly.
+              </p>
+              <p className="prototype-banner-body">
+                Your next payment of <strong>$33.00</strong> (excluding tax and
+                discounts) is scheduled for <strong>Oct 30, 2025</strong> in 30
+                days.
+              </p>
+            </InfoBanner>
 
             <section className="prototype-section">
               <h2 className="prototype-subheading">Order summary</h2>
@@ -185,42 +247,35 @@ export function UpgradePrototypePage({
                 positive={true}
                 helper="200 days remaining in your billing period"
               />
-              {content.showMidSuccess && (
-                <PrototypeNotice
-                  tone="success"
-                  title="Your Plus individual plan will start right away!"
-                >
-                  You can keep using your existing downloads and licenses.
-                </PrototypeNotice>
-              )}
+              {content.showMidSuccess && <InlineSuccess />}
             </section>
 
             <section className="prototype-section">
               <SummaryRow label="Total" value={total} total={true} />
-              <PrototypeNotice>
-                The credit from your current plan and total amount shown above are
-                an estimate. When you upgrade, you will receive credit for the
-                unused portion of your current plan, so you will pay only the
-                pro-rated difference. Because charges are calculated to the moment
-                you hit the confirm button, the final amount may vary slightly. The
-                exact amounts will appear on your invoice.
-              </PrototypeNotice>
+              <InfoBanner>
+                <p className="prototype-banner-body">
+                  The credit from your current plan and total amount shown above
+                  are an estimate. When you upgrade, you'll receive credit for the
+                  unused portion of your current plan, so you'll pay only the
+                  pro-rated difference. Because charges are calculated to the when
+                  you hit the confirm button, the final amount may vary slightly.
+                  The exact amounts will appear on your invoice.
+                </p>
+                <p className="prototype-banner-body">
+                  Note: there appears to be a typo in the original -
+                  "calculated to the when" is likely missing a word, probably
+                  meant to be "calculated to the moment when.
+                </p>
+              </InfoBanner>
               <div className="prototype-renewal-copy">
-                On <strong>Next renewal date</strong>, you will be charged{" "}
-                <strong>{total}</strong>. Your plan renews{" "}
+                On <strong>Next renewal date</strong>, you'll be charged{" "}
+                <strong>USD $00.00</strong>. Your plan renews{" "}
                 <strong>{renewalCycle}</strong>.
               </div>
             </section>
 
             <section className="prototype-action-block">
-              {content.showBottomSuccess && (
-                <PrototypeNotice
-                  tone="success"
-                  title="Your Plus individual plan will start right away!"
-                >
-                  You can keep using your existing downloads and licenses.
-                </PrototypeNotice>
-              )}
+              {content.showBottomSuccess && <InlineSuccess />}
               <div className="prototype-button-row">
                 <PrototypeButton variant="primary">Confirm</PrototypeButton>
                 <PrototypeButton variant="secondary">Cancel</PrototypeButton>
@@ -242,16 +297,20 @@ export function UpgradePrototypePage({
           </div>
 
           <div className="prototype-footer-social">
-            {socialItems.map((item) => (
-              <span key={item} className="prototype-social-pill">
-                {item}
-              </span>
+            {socialAssets.map((src, index) => (
+              <button
+                key={socialItems[index]}
+                className="prototype-social-pill"
+                type="button"
+              >
+                <img alt="" className="prototype-icon-24" src={src} />
+              </button>
             ))}
-            <span className="prototype-locale">
-              <GlobeIcon className="ds-icon ds-icon--inline" />
-              English
-              <ChevronDownIcon className="ds-icon ds-icon--inline" />
-            </span>
+            <button className="prototype-locale" type="button">
+              <img alt="" className="prototype-icon-24" src={assets.globe} />
+              <span>English</span>
+              <img alt="" className="prototype-icon-24" src={assets.footerChevron} />
+            </button>
           </div>
 
           <p className="prototype-footer-copy">
