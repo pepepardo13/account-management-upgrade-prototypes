@@ -1,6 +1,16 @@
 import { useMemo, useState } from "react";
 
 import "./upgradePrototype.css";
+import {
+  ChevronDownIcon,
+  ChevronLeftIcon,
+  ExternalLinkIcon,
+  GlobeIcon,
+  PrototypeBadge,
+  PrototypeButton,
+  PrototypeNotice,
+  PrototypeRadioCard,
+} from "./prototypeDesignSystem.tsx";
 
 export type UpgradeVariant = "A" | "B" | "C";
 
@@ -38,60 +48,6 @@ function formatPrice(cycle: BillingCycle) {
 
 function formatRenewal(cycle: BillingCycle) {
   return cycle === "monthly" ? "monthly" : "yearly";
-}
-
-function PlanCard({
-  cycle,
-  selected,
-  onSelect,
-}: {
-  cycle: BillingCycle;
-  selected: boolean;
-  onSelect: (cycle: BillingCycle) => void;
-}) {
-  const isAnnual = cycle === "annual";
-
-  return (
-    <button
-      className={`prototype-plan-card${selected ? " is-selected" : ""}`}
-      onClick={() => onSelect(cycle)}
-      type="button"
-    >
-      <div className="prototype-plan-row">
-        <span className={`prototype-radio${selected ? " is-selected" : ""}`} />
-        <span className="prototype-plan-name">
-          {isAnnual ? "Annual" : "Monthly"}
-        </span>
-        {isAnnual && <span className="prototype-badge">Save 50%</span>}
-      </div>
-      <div className="prototype-plan-price">$XX.XX/m + local tax</div>
-      {isAnnual && (
-        <div className="prototype-plan-helper">
-          Billed annually at $XXX.XX/year + local tax
-        </div>
-      )}
-    </button>
-  );
-}
-
-function Notice({
-  tone = "info",
-  title,
-  children,
-}: {
-  tone?: "info" | "success";
-  title?: string;
-  children: string;
-}) {
-  return (
-    <div className={`prototype-notice${tone === "success" ? " is-success" : ""}`}>
-      <div className="prototype-notice-icon">{tone === "success" ? "✓" : "i"}</div>
-      <div className="prototype-notice-copy">
-        {title && <strong>{title}</strong>}
-        <div>{children}</div>
-      </div>
-    </div>
-  );
 }
 
 function SummaryRow({
@@ -147,32 +103,34 @@ export function UpgradePrototypePage({
           <span className="prototype-brand-mark">e</span>
           <span>envato</span>
         </div>
-        <div className="prototype-user">Juan v</div>
+        <div className="prototype-user">
+          Juan <ChevronDownIcon className="ds-icon ds-icon--inline" />
+        </div>
       </header>
 
       <main className="prototype-shell">
         <div className="prototype-content">
           <button className="prototype-back" type="button" aria-label="Go back">
-            &lt;
+            <ChevronLeftIcon className="ds-icon" />
           </button>
 
           <div className="prototype-title-block">
             <h1 className="prototype-title">Upgrade to the Plus Individual plan</h1>
             {content.showTopSuccess && (
-              <Notice
+              <PrototypeNotice
                 tone="success"
                 title="Your Plus individual plan will start right away!"
               >
                 You can keep using your existing downloads and licenses.
-              </Notice>
+              </PrototypeNotice>
             )}
           </div>
 
           <div className="prototype-stack">
-            <Notice title="Current plan: Core Individual, renews monthly.">
+            <PrototypeNotice title="Current plan: Core Individual, renews monthly.">
               Your next payment of $33.00 (excluding tax and discounts) is
               scheduled for Oct 30, 2025, in 30 days.
-            </Notice>
+            </PrototypeNotice>
 
             <section className="prototype-section">
               <h2 className="prototype-subheading">Order summary</h2>
@@ -181,15 +139,19 @@ export function UpgradePrototypePage({
             <section className="prototype-section">
               <h3 className="prototype-heading">Confirm your billing cycle</h3>
               <div className="prototype-billing-grid">
-                <PlanCard
-                  cycle="monthly"
+                <PrototypeRadioCard
+                  title="Monthly"
+                  price="$XX.XX/m + local tax"
                   selected={billingCycle === "monthly"}
-                  onSelect={setBillingCycle}
+                  onClick={() => setBillingCycle("monthly")}
                 />
-                <PlanCard
-                  cycle="annual"
+                <PrototypeRadioCard
+                  title="Annual"
+                  price="$XX.XX/m + local tax"
+                  helper="Billed annually at $XXX.XX/year + local tax"
+                  badge={<PrototypeBadge>Save 50%</PrototypeBadge>}
                   selected={billingCycle === "annual"}
-                  onSelect={setBillingCycle}
+                  onClick={() => setBillingCycle("annual")}
                 />
               </div>
             </section>
@@ -201,9 +163,12 @@ export function UpgradePrototypePage({
                   <span className="prototype-mastercard" />
                   <span>**** **** **** 8757</span>
                 </div>
-                <button className="prototype-button is-secondary" type="button">
+                <PrototypeButton
+                  iconLeading={<ExternalLinkIcon className="ds-icon ds-icon--button" />}
+                  variant="secondary"
+                >
                   Update payment method
-                </button>
+                </PrototypeButton>
               </div>
             </section>
 
@@ -221,25 +186,25 @@ export function UpgradePrototypePage({
                 helper="200 days remaining in your billing period"
               />
               {content.showMidSuccess && (
-                <Notice
+                <PrototypeNotice
                   tone="success"
                   title="Your Plus individual plan will start right away!"
                 >
                   You can keep using your existing downloads and licenses.
-                </Notice>
+                </PrototypeNotice>
               )}
             </section>
 
             <section className="prototype-section">
               <SummaryRow label="Total" value={total} total={true} />
-              <Notice>
+              <PrototypeNotice>
                 The credit from your current plan and total amount shown above are
                 an estimate. When you upgrade, you will receive credit for the
                 unused portion of your current plan, so you will pay only the
                 pro-rated difference. Because charges are calculated to the moment
                 you hit the confirm button, the final amount may vary slightly. The
                 exact amounts will appear on your invoice.
-              </Notice>
+              </PrototypeNotice>
               <div className="prototype-renewal-copy">
                 On <strong>Next renewal date</strong>, you will be charged{" "}
                 <strong>{total}</strong>. Your plan renews{" "}
@@ -249,20 +214,16 @@ export function UpgradePrototypePage({
 
             <section className="prototype-action-block">
               {content.showBottomSuccess && (
-                <Notice
+                <PrototypeNotice
                   tone="success"
                   title="Your Plus individual plan will start right away!"
                 >
                   You can keep using your existing downloads and licenses.
-                </Notice>
+                </PrototypeNotice>
               )}
               <div className="prototype-button-row">
-                <button className="prototype-button is-primary" type="button">
-                  Confirm
-                </button>
-                <button className="prototype-button is-secondary" type="button">
-                  Cancel
-                </button>
+                <PrototypeButton variant="primary">Confirm</PrototypeButton>
+                <PrototypeButton variant="secondary">Cancel</PrototypeButton>
               </div>
             </section>
           </div>
@@ -273,7 +234,7 @@ export function UpgradePrototypePage({
         <div className="prototype-footer-inner">
           <div className="prototype-footer-links">
             {footerLinks.map((item, index) => (
-              <div key={item} className="prototype-footer-links">
+              <div key={item} className="prototype-footer-link-item">
                 {index > 0 && <span className="prototype-footer-divider">|</span>}
                 <a href="/">{item}</a>
               </div>
@@ -286,7 +247,11 @@ export function UpgradePrototypePage({
                 {item}
               </span>
             ))}
-            <span className="prototype-locale">English v</span>
+            <span className="prototype-locale">
+              <GlobeIcon className="ds-icon ds-icon--inline" />
+              English
+              <ChevronDownIcon className="ds-icon ds-icon--inline" />
+            </span>
           </div>
 
           <p className="prototype-footer-copy">
