@@ -483,6 +483,10 @@
   grid-template-columns: 24px 1fr;
 }
 
+.prototype-success-inline--text-only {
+  display: block;
+}
+
 .prototype-summary-success {
   margin-top: 0;
 }

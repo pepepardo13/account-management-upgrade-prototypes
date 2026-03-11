@@ -63,7 +63,7 @@ const socialAssets = [
 function getVariantContent(variant: UpgradeVariant) {
   return {
     showTopSuccess: variant === "C",
-    showMidSuccess: variant === "B" || variant === "C",
+    showMidSuccess: variant === "B",
     showBottomSuccess: variant === "A",
   };
 }
@@ -76,10 +76,12 @@ function formatRenewal(cycle: BillingCycle) {
   return cycle === "monthly" ? "monthly" : "yearly";
 }
 
-function InlineSuccess() {
+function InlineSuccess({ icon = true }: { icon?: boolean }) {
   return (
-    <div className="prototype-success-inline">
-      <img alt="" className="prototype-icon-24" src={assets.success} />
+    <div
+      className={`prototype-success-inline${icon ? "" : " prototype-success-inline--text-only"}`}
+    >
+      {icon && <img alt="" className="prototype-icon-24" src={assets.success} />}
       <div className="prototype-success-copy">
         <p className="prototype-success-title">
           Your Plus individual plan will start right away!
@@ -150,7 +152,7 @@ export function UpgradePrototypePage({
   const content = useMemo(() => getVariantContent(variant), [variant]);
   const total = formatPrice(billingCycle);
   const renewalCycle = formatRenewal(billingCycle);
-  const dividerBeforeCredit = variant === "A";
+  const dividerBeforeCredit = variant === "A" || variant === "C";
 
   return (
     <div className="prototype-page">
@@ -243,7 +245,7 @@ export function UpgradePrototypePage({
               {!dividerBeforeCredit && <div className="prototype-divider" />}
               {content.showMidSuccess && (
                 <div className="prototype-summary-success">
-                  <InlineSuccess />
+                  <InlineSuccess icon={false} />
                 </div>
               )}
             </section>
