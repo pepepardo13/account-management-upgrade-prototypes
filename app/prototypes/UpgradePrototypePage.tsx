@@ -201,7 +201,7 @@ export function UpgradePrototypePage({
               </p>
               <p className="prototype-banner-body">
                 Your next payment of <strong>$33.00</strong> (excluding tax and
-                discounts) is scheduled for <strong>Oct 30, 2025</strong> in 30
+                discounts) is scheduled for <strong>Oct 30, 2026</strong> in 30
                 days.
               </p>
             </InfoBanner>
