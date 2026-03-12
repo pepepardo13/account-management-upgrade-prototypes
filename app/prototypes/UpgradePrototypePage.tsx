@@ -2,6 +2,7 @@ import { useMemo, useState, type ReactNode } from "react";
 
 import "./upgradePrototype.css";
 import envatoLogoPng from "./assets/envato-logo.png";
+import redditIconPng from "./assets/reddit-icon.png";
 import {
   ExternalLinkIcon,
   PrototypeBadge,
@@ -29,12 +30,12 @@ const footerLinks = [
   "Cookie Settings",
 ];
 
-const socialItems = ["yt", "tt", "fb", "x", "pn", "ig"];
+const socialItems = ["yt", "tt", "fb", "reddit", "pn", "ig"];
 
 const assets = {
   youtube: "https://www.figma.com/api/mcp/asset/89a2f678-858b-4bf6-945e-0825efe3f5d7",
   tiktok: "https://www.figma.com/api/mcp/asset/1a27f991-c41f-4f68-9db7-1873fa0f4ba8",
-  x: "https://www.figma.com/api/mcp/asset/52dae60f-cace-44d7-861d-f3ad5dea8bf2",
+  reddit: redditIconPng,
   facebook: "https://www.figma.com/api/mcp/asset/f896844c-0903-4aae-b790-2fd7123a3881",
   pinterest:
     "https://www.figma.com/api/mcp/asset/ae09cbc9-8931-445c-b8de-eaa2a392b606",
@@ -55,7 +56,7 @@ const socialAssets = [
   assets.youtube,
   assets.tiktok,
   assets.facebook,
-  assets.x,
+  assets.reddit,
   assets.pinterest,
   assets.instagram,
 ];
@@ -334,8 +335,8 @@ export function UpgradePrototypePage({
           </div>
 
           <p className="prototype-footer-copy">
-            © 2023 Envato Elements Pty Ltd. Trademarks and brands are the property
-            of their respective owners.
+            © 2026 Envato Trademarks and brands are the property of their
+            respective owners.
           </p>
         </div>
       </footer>
