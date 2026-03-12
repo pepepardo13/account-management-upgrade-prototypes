@@ -505,6 +505,7 @@
 .prototype-success-copy--single-line {
   font-size: var(--ds-font-size-subheading);
   line-height: var(--ds-line-height-body);
+  min-width: 0;
 }
 
 .prototype-success-copy p {
