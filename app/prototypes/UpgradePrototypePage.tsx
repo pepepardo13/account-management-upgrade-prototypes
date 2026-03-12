@@ -275,12 +275,15 @@ export function UpgradePrototypePage({
               <SummaryRow label="What you will pay today" value={total} total={true} />
               <InfoBanner>
                 <p className="prototype-banner-body">
-                  The credit from your current plan and total amount shown above
-                  are an estimate. When you upgrade, you'll receive credit for
-                  the unused portion of your current plan, so you'll pay only
-                  the pro-rated difference. Because charges are calculated to
-                  the when you hit the confirm button, the final amount may
-                  vary slightly. The exact amounts will appear on your invoice.
+                  The credit from your current plan and the total amount shown
+                  above are estimates. When you upgrade, you&apos;ll receive
+                  credit for the unused portion of your current plan, so
+                  you&apos;ll only pay the prorated difference.{" "}
+                  <strong>
+                    The final amount may vary slightly as charges are
+                    calculated when you confirm your upgrade.
+                  </strong>{" "}
+                  The exact amounts will appear on your invoice.
                 </p>
               </InfoBanner>
               <div className="prototype-renewal-copy">
