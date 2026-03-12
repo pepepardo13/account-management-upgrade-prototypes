@@ -88,6 +88,11 @@
   gap: 8px;
 }
 
+.prototype-today-section {
+  gap: 40px;
+  margin-top: -8px;
+}
+
 .prototype-heading {
   font-size: var(--ds-font-size-subheading);
   font-weight: 600;

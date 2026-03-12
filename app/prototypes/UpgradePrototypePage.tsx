@@ -251,7 +251,7 @@ export function UpgradePrototypePage({
               )}
             </section>
 
-            <section className="prototype-section">
+            <section className="prototype-section prototype-today-section">
               <SummaryRow label="What you will pay today" value={total} total={true} />
               <InfoBanner>
                 <p className="prototype-banner-body">
