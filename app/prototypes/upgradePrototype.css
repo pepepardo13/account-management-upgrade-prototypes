@@ -89,8 +89,12 @@
 }
 
 .prototype-today-section {
-  gap: 40px;
+  gap: 16px;
   margin-top: -8px;
+}
+
+.prototype-today-section > .prototype-info-banner {
+  margin-top: 24px;
 }
 
 .prototype-heading {
