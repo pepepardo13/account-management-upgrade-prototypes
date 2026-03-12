@@ -152,7 +152,6 @@ export function UpgradePrototypePage({
   const content = useMemo(() => getVariantContent(variant), [variant]);
   const total = formatPrice(billingCycle);
   const renewalCycle = formatRenewal(billingCycle);
-  const dividerBeforeCredit = variant === "A" || variant === "C";
 
   return (
     <div className="prototype-page">
@@ -235,9 +234,8 @@ export function UpgradePrototypePage({
               </h3>
               <SummaryRow label="Price" value="$1000.00/year" />
               <SummaryRow label="Tax" value="$100.00/year" />
-              {dividerBeforeCredit && <div className="prototype-divider" />}
+              <div className="prototype-divider" />
               <SummaryRow label="Total" value="$1100.00/year" total={true} />
-              {!dividerBeforeCredit && <div className="prototype-divider" />}
               <SummaryRow
                 label="Credit from your current plan"
                 value="-$500.00"
