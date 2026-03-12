@@ -69,11 +69,11 @@ function getVariantContent(variant: UpgradeVariant) {
 }
 
 function formatPrice(cycle: BillingCycle) {
-  return cycle === "monthly" ? "USD $00.00/month" : "USD $00.00/year";
+  return cycle === "monthly" ? "USD $600.00" : "USD $600.00";
 }
 
 function formatRenewal(cycle: BillingCycle) {
-  return cycle === "monthly" ? "monthly" : "yearly";
+  return cycle === "monthly" ? "annually" : "annually";
 }
 
 function InlineSuccess({ icon = true }: { icon?: boolean }) {
@@ -231,18 +231,19 @@ export function UpgradePrototypePage({
 
             <section className="prototype-section">
               <h3 className="prototype-heading">
-                Plus Individual monthly subscription
+                Plus Individual annual subscription
               </h3>
-              <SummaryRow label="Price" value="$00.00/year" />
-              <SummaryRow label="Tax" value="$0.00/year" />
+              <SummaryRow label="Price" value="$1000.00/year" />
+              <SummaryRow label="Tax" value="$100.00/year" />
               {dividerBeforeCredit && <div className="prototype-divider" />}
+              <SummaryRow label="Total" value="$1100.00/year" total={true} />
+              {!dividerBeforeCredit && <div className="prototype-divider" />}
               <SummaryRow
                 label="Credit from your current plan"
-                value="-$0.00"
+                value="-$500.00"
                 positive={true}
                 helper="200 days remaining in your billing period"
               />
-              {!dividerBeforeCredit && <div className="prototype-divider" />}
               {content.showMidSuccess && (
                 <div className="prototype-summary-success">
                   <InlineSuccess icon={false} />
@@ -251,25 +252,20 @@ export function UpgradePrototypePage({
             </section>
 
             <section className="prototype-section">
-              <SummaryRow label="Total" value={total} total={true} />
+              <SummaryRow label="What you will pay today" value={total} total={true} />
               <InfoBanner>
                 <p className="prototype-banner-body">
                   The credit from your current plan and total amount shown above
-                  are an estimate. When you upgrade, you'll receive credit for the
-                  unused portion of your current plan, so you'll pay only the
-                  pro-rated difference. Because charges are calculated to the when
-                  you hit the confirm button, the final amount may vary slightly.
-                  The exact amounts will appear on your invoice.
-                </p>
-                <p className="prototype-banner-body">
-                  Note: there appears to be a typo in the original -
-                  "calculated to the when" is likely missing a word, probably
-                  meant to be "calculated to the moment when.
+                  are an estimate. When you upgrade, you'll receive credit for
+                  the unused portion of your current plan, so you'll pay only
+                  the pro-rated difference. Because charges are calculated to
+                  the when you hit the confirm button, the final amount may
+                  vary slightly. The exact amounts will appear on your invoice.
                 </p>
               </InfoBanner>
               <div className="prototype-renewal-copy">
-                On <strong>Next renewal date</strong>, you'll be charged{" "}
-                <strong>USD $00.00</strong>. Your plan renews{" "}
+                On <strong>Mar 2027</strong>, you will be charged{" "}
+                <strong>USD $1100.00</strong>. Your plan renews{" "}
                 <strong>{renewalCycle}</strong>.
               </div>
             </section>
