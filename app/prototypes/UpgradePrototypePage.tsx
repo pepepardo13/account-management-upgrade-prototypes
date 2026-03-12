@@ -9,7 +9,7 @@ import {
   PrototypeRadioCard,
 } from "./prototypeDesignSystem.tsx";
 
-export type UpgradeVariant = "A" | "B" | "C" | "A_ALT" | "B_ALT";
+export type UpgradeVariant = "A" | "B" | "C" | "A_ALT" | "B_ALT" | "C_ALT";
 
 type BillingCycle = "monthly" | "annual";
 
@@ -61,10 +61,11 @@ const socialAssets = [
 ];
 
 function getVariantContent(variant: UpgradeVariant) {
-  const isAlt = variant === "A_ALT" || variant === "B_ALT";
+  const isAlt =
+    variant === "A_ALT" || variant === "B_ALT" || variant === "C_ALT";
 
   return {
-    showTopSuccess: variant === "C",
+    showTopSuccess: variant === "C" || variant === "C_ALT",
     showMidSuccess: variant === "B" || variant === "B_ALT",
     showBottomSuccess: variant === "A" || variant === "A_ALT",
     successSingleLine: isAlt,

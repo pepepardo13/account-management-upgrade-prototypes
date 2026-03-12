@@ -21,7 +21,7 @@ const meta = {
   argTypes: {
     variant: {
       control: "inline-radio",
-      options: ["A", "B", "C", "A_ALT", "B_ALT"],
+      options: ["A", "B", "C", "A_ALT", "B_ALT", "C_ALT"],
     },
   },
 } satisfies Meta<typeof UpgradePrototypePage>;
@@ -94,6 +94,20 @@ export const UpgradeOptionBAlt: Story = {
       description: {
         story:
           "Alternate copy version of option B with a single-line success confirmation.",
+      },
+    },
+  },
+};
+
+export const UpgradeOptionCAlt: Story = {
+  args: {
+    variant: "C_ALT",
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Alternate copy version of option C with a single-line success confirmation.",
       },
     },
   },
