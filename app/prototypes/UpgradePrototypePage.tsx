@@ -9,7 +9,7 @@ import {
   PrototypeRadioCard,
 } from "./prototypeDesignSystem.tsx";
 
-export type UpgradeVariant = "A" | "B" | "C";
+export type UpgradeVariant = "A" | "B" | "C" | "A_ALT" | "B_ALT";
 
 type BillingCycle = "monthly" | "annual";
 
@@ -61,10 +61,13 @@ const socialAssets = [
 ];
 
 function getVariantContent(variant: UpgradeVariant) {
+  const isAlt = variant === "A_ALT" || variant === "B_ALT";
+
   return {
     showTopSuccess: variant === "C",
-    showMidSuccess: variant === "B",
-    showBottomSuccess: variant === "A",
+    showMidSuccess: variant === "B" || variant === "B_ALT",
+    showBottomSuccess: variant === "A" || variant === "A_ALT",
+    successSingleLine: isAlt,
   };
 }
 
@@ -76,19 +79,29 @@ function formatRenewal(cycle: BillingCycle) {
   return cycle === "monthly" ? "annually" : "annually";
 }
 
-function InlineSuccess({ icon = true }: { icon?: boolean }) {
+function InlineSuccess({
+  icon = true,
+  singleLine = false,
+}: {
+  icon?: boolean;
+  singleLine?: boolean;
+}) {
   return (
     <div
       className={`prototype-success-inline${icon ? "" : " prototype-success-inline--text-only"}`}
     >
       {icon && <img alt="" className="prototype-icon-24" src={assets.success} />}
-      <div className="prototype-success-copy">
+      <div
+        className={`prototype-success-copy${singleLine ? " prototype-success-copy--single-line" : ""}`}
+      >
         <p className="prototype-success-title">
           Your Plus individual plan will start right away!
         </p>
-        <p className="prototype-success-body">
-          You can keep using your existing downloads and licenses.
-        </p>
+        {!singleLine && (
+          <p className="prototype-success-body">
+            You can keep using your existing downloads and licenses.
+          </p>
+        )}
       </div>
     </div>
   );
@@ -173,7 +186,9 @@ export function UpgradePrototypePage({
 
           <div className="prototype-title-block">
             <h1 className="prototype-title">Upgrade to the Plus Individual plan</h1>
-            {content.showTopSuccess && <InlineSuccess />}
+            {content.showTopSuccess && (
+              <InlineSuccess singleLine={content.successSingleLine} />
+            )}
           </div>
 
           <div className="prototype-stack">
@@ -245,7 +260,10 @@ export function UpgradePrototypePage({
               <div className="prototype-divider" />
               {content.showMidSuccess && (
                 <div className="prototype-summary-success">
-                  <InlineSuccess icon={false} />
+                  <InlineSuccess
+                    icon={false}
+                    singleLine={content.successSingleLine}
+                  />
                 </div>
               )}
             </section>
@@ -270,7 +288,9 @@ export function UpgradePrototypePage({
             </section>
 
             <section className="prototype-action-block">
-              {content.showBottomSuccess && <InlineSuccess />}
+              {content.showBottomSuccess && (
+                <InlineSuccess singleLine={content.successSingleLine} />
+              )}
               <div className="prototype-button-row">
                 <PrototypeButton variant="primary">Confirm</PrototypeButton>
                 <PrototypeButton variant="secondary">Cancel</PrototypeButton>

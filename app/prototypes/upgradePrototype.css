@@ -502,6 +502,11 @@
   line-height: var(--ds-line-height-body);
 }
 
+.prototype-success-copy--single-line {
+  font-size: var(--ds-font-size-subheading);
+  line-height: var(--ds-line-height-body);
+}
+
 .prototype-success-copy p {
   margin: 0;
 }

@@ -21,7 +21,7 @@ const meta = {
   argTypes: {
     variant: {
       control: "inline-radio",
-      options: ["A", "B", "C"],
+      options: ["A", "B", "C", "A_ALT", "B_ALT"],
     },
   },
 } satisfies Meta<typeof UpgradePrototypePage>;
@@ -66,6 +66,34 @@ export const UpgradeOptionC: Story = {
       description: {
         story:
           "Strongest confirmation version with success messaging both near the title and in the pricing summary.",
+      },
+    },
+  },
+};
+
+export const UpgradeOptionAAlt: Story = {
+  args: {
+    variant: "A_ALT",
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Alternate copy version of option A with a single-line success confirmation.",
+      },
+    },
+  },
+};
+
+export const UpgradeOptionBAlt: Story = {
+  args: {
+    variant: "B_ALT",
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Alternate copy version of option B with a single-line success confirmation.",
       },
     },
   },
