@@ -66,8 +66,9 @@ function getVariantContent(variant: UpgradeVariant) {
 
   return {
     showTopSuccess: variant === "C" || variant === "C_ALT",
-    showMidSuccess: variant === "B" || variant === "B_ALT",
+    showMidSuccess: variant === "B",
     showBottomSuccess: variant === "A" || variant === "A_ALT",
+    showPostActionSuccess: variant === "B_ALT",
     successSingleLine: isAlt,
   };
 }
@@ -296,6 +297,9 @@ export function UpgradePrototypePage({
                 <PrototypeButton variant="primary">Confirm</PrototypeButton>
                 <PrototypeButton variant="secondary">Cancel</PrototypeButton>
               </div>
+              {content.showPostActionSuccess && (
+                <InlineSuccess singleLine={content.successSingleLine} />
+              )}
             </section>
           </div>
         </div>
