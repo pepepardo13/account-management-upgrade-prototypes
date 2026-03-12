@@ -244,6 +244,7 @@ export function UpgradePrototypePage({
                 positive={true}
                 helper="200 days remaining in your billing period"
               />
+              <div className="prototype-divider" />
               {content.showMidSuccess && (
                 <div className="prototype-summary-success">
                   <InlineSuccess icon={false} />
