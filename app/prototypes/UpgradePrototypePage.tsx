@@ -278,11 +278,9 @@ export function UpgradePrototypePage({
                   The credit from your current plan and the total amount shown
                   above are estimates. When you upgrade, you&apos;ll receive
                   credit for the unused portion of your current plan, so
-                  you&apos;ll only pay the prorated difference.{" "}
-                  <strong>
-                    The final amount may vary slightly as charges are
-                    calculated when you confirm your upgrade.
-                  </strong>{" "}
+                  you&apos;ll only pay the prorated difference. The final amount
+                  may vary slightly as charges are calculated when you confirm
+                  your upgrade.{" "}
                   The exact amounts will appear on your invoice.
                 </p>
               </InfoBanner>
