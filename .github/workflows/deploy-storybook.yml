@@ -36,6 +36,12 @@ jobs:
           BASE_PATH: /account-management-upgrade-prototypes/
         run: npm run build-storybook
 
+      - name: Build standalone alt pages
+        run: npm run build-standalone -- --base /account-management-upgrade-prototypes/
+
+      - name: Merge standalone pages
+        run: cp -R dist-standalone/* storybook-static/
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

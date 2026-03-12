@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "node ./node_modules/storybook/dist/bin/dispatcher.js dev -p 6006",
     "storybook": "node ./node_modules/storybook/dist/bin/dispatcher.js dev -p 6006",
-    "build-storybook": "node ./node_modules/storybook/dist/bin/dispatcher.js build"
+    "build-storybook": "node ./node_modules/storybook/dist/bin/dispatcher.js build",
+    "build-standalone": "node ./node_modules/vite/bin/vite.js build"
   },
   "dependencies": {
     "react": "^19.1.0",
