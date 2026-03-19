@@ -11,6 +11,7 @@ export default defineConfig({
     emptyOutDir: true,
     rollupOptions: {
       input: {
+        "option-a": resolve(__dirname, "standalone/option-a.html"),
         "option-a-alt": resolve(__dirname, "standalone/option-a-alt.html"),
         "option-b-alt": resolve(__dirname, "standalone/option-b-alt.html"),
         "option-c-alt": resolve(__dirname, "standalone/option-c-alt.html"),

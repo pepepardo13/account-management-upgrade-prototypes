@@ -2,9 +2,19 @@ import { useMemo, useState, type ReactNode } from "react";
 
 import "./upgradePrototype.css";
 import envatoLogoPng from "./assets/envato-logo.png";
+import facebookIconSvg from "./assets/icon-facebook.svg";
+import instagramIconSvg from "./assets/icon-instagram.svg";
+import pinterestIconSvg from "./assets/icon-pinterest.svg";
 import redditIconPng from "./assets/reddit-icon.png";
+import tiktokIconSvg from "./assets/icon-tiktok.svg";
+import youtubeIconSvg from "./assets/icon-youtube.svg";
 import {
+  CheckCircleIcon,
+  ChevronDownIcon,
+  ChevronLeftIcon,
   ExternalLinkIcon,
+  GlobeIcon,
+  InfoCircleIcon,
   PrototypeBadge,
   PrototypeButton,
   PrototypeRadioCard,
@@ -32,33 +42,13 @@ const footerLinks = [
 
 const socialItems = ["yt", "tt", "fb", "reddit", "pn", "ig"];
 
-const assets = {
-  youtube: "https://www.figma.com/api/mcp/asset/89a2f678-858b-4bf6-945e-0825efe3f5d7",
-  tiktok: "https://www.figma.com/api/mcp/asset/1a27f991-c41f-4f68-9db7-1873fa0f4ba8",
-  reddit: redditIconPng,
-  facebook: "https://www.figma.com/api/mcp/asset/f896844c-0903-4aae-b790-2fd7123a3881",
-  pinterest:
-    "https://www.figma.com/api/mcp/asset/ae09cbc9-8931-445c-b8de-eaa2a392b606",
-  instagram:
-    "https://www.figma.com/api/mcp/asset/f6ad9571-3194-46f9-bdc6-6343b4c0edab",
-  globe: "https://www.figma.com/api/mcp/asset/607b4b28-0155-46e6-9007-3a27272ff1ca",
-  footerChevron:
-    "https://www.figma.com/api/mcp/asset/e1819494-01b8-4c15-b27c-1b324433dcef",
-  success:
-    "https://www.figma.com/api/mcp/asset/c1b8d473-d309-4117-a038-e136f2617b48",
-  chevronDown:
-    "https://www.figma.com/api/mcp/asset/bb5497cc-25ad-4210-833a-e9428f9cb8e3",
-  back: "https://www.figma.com/api/mcp/asset/4fd32aec-0bf7-46b7-b0bb-aacfe4ae8849",
-  info: "https://www.figma.com/api/mcp/asset/918e8e9d-4c84-41f4-8f1f-b1571c82c2ee",
-};
-
 const socialAssets = [
-  assets.youtube,
-  assets.tiktok,
-  assets.facebook,
-  assets.reddit,
-  assets.pinterest,
-  assets.instagram,
+  youtubeIconSvg,
+  tiktokIconSvg,
+  facebookIconSvg,
+  redditIconPng,
+  pinterestIconSvg,
+  instagramIconSvg,
 ];
 
 function getVariantContent(variant: UpgradeVariant) {
@@ -93,7 +83,7 @@ function InlineSuccess({
     <div
       className={`prototype-success-inline${icon ? "" : " prototype-success-inline--text-only"}`}
     >
-      {icon && <img alt="" className="prototype-icon-24" src={assets.success} />}
+      {icon && <CheckCircleIcon className="prototype-icon-24 prototype-success-icon" />}
       <div
         className={`prototype-success-copy${singleLine ? " prototype-success-copy--single-line" : ""}`}
       >
@@ -115,7 +105,7 @@ function InfoBanner({ children }: { children: ReactNode }) {
     <div className="prototype-info-banner">
       <div className="prototype-info-content">
         <div className="prototype-info-icon-wrap">
-          <img alt="" className="prototype-icon-24" src={assets.info} />
+          <InfoCircleIcon className="prototype-icon-24 prototype-info-icon" />
         </div>
         <div className="prototype-info-copy">{children}</div>
       </div>
@@ -177,14 +167,14 @@ export function UpgradePrototypePage({
         </div>
         <div className="prototype-user">
           <span>Juan</span>
-          <img alt="" className="prototype-icon-16" src={assets.chevronDown} />
+          <ChevronDownIcon className="prototype-icon-16" />
         </div>
       </header>
 
       <main className="prototype-shell">
         <div className="prototype-content">
           <button className="prototype-back" type="button" aria-label="Go back">
-            <img alt="" className="prototype-icon-24" src={assets.back} />
+            <ChevronLeftIcon className="prototype-icon-24" />
           </button>
 
           <div className="prototype-title-block">
@@ -329,9 +319,9 @@ export function UpgradePrototypePage({
               </button>
             ))}
             <button className="prototype-locale" type="button">
-              <img alt="" className="prototype-icon-24" src={assets.globe} />
+              <GlobeIcon className="prototype-icon-24" />
               <span>English</span>
-              <img alt="" className="prototype-icon-24" src={assets.footerChevron} />
+              <ChevronDownIcon className="prototype-icon-24" />
             </button>
           </div>
 
