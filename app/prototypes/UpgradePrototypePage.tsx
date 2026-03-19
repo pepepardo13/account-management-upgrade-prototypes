@@ -61,6 +61,7 @@ function getVariantContent(variant: UpgradeVariant) {
     showMidSuccess: variant === "B",
     showBottomSuccess: variant === "A" || variant === "A_ALT",
     showPostActionSuccess: variant === "B_ALT",
+    preventInvoiceOrphan: variant === "A_ALT",
     successSingleLine: isAlt,
   };
 }
@@ -272,7 +273,8 @@ export function UpgradePrototypePage({
                   you&apos;ll only pay the prorated difference. The final amount
                   may vary slightly as charges are calculated when you confirm
                   your upgrade.{" "}
-                  The exact amounts will appear on your invoice.
+                  The exact amounts will appear on{" "}
+                  {content.preventInvoiceOrphan ? "your\u00A0invoice." : "your invoice."}
                 </p>
               </InfoBanner>
               <div className="prototype-renewal-copy">
