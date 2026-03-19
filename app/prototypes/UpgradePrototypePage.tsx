@@ -267,7 +267,7 @@ export function UpgradePrototypePage({
               <InfoBanner>
                 <p className="prototype-banner-body">
                   The credit from your current plan and the total amount shown
-                  above are estimates. When you upgrade, you&apos;ll receive
+                  are estimates. When you upgrade, you&apos;ll receive
                   credit for the unused portion of your current plan, so
                   you&apos;ll only pay the prorated difference. The final amount
                   may vary slightly as charges are calculated when you confirm
