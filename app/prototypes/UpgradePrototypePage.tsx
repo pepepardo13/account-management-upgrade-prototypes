@@ -2,6 +2,12 @@ import { useMemo, useState, type ReactNode } from "react";
 
 import "./upgradePrototype.css";
 import envatoLogoPng from "./assets/envato-logo.png";
+import figmaBackSvg from "./assets/figma-back.svg";
+import figmaChevronDownSvg from "./assets/figma-chevron-down.svg";
+import figmaGlobeSvg from "./assets/figma-globe.svg";
+import figmaInfoSvg from "./assets/figma-info.svg";
+import figmaLocaleChevronSvg from "./assets/figma-locale-chevron.svg";
+import figmaSuccessSvg from "./assets/figma-success.svg";
 import facebookIconSvg from "./assets/icon-facebook.svg";
 import instagramIconSvg from "./assets/icon-instagram.svg";
 import pinterestIconSvg from "./assets/icon-pinterest.svg";
@@ -9,12 +15,7 @@ import redditIconPng from "./assets/reddit-icon.png";
 import tiktokIconSvg from "./assets/icon-tiktok.svg";
 import youtubeIconSvg from "./assets/icon-youtube.svg";
 import {
-  CheckCircleIcon,
-  ChevronDownIcon,
-  ChevronLeftIcon,
   ExternalLinkIcon,
-  GlobeIcon,
-  InfoCircleIcon,
   PrototypeBadge,
   PrototypeButton,
   PrototypeRadioCard,
@@ -83,7 +84,7 @@ function InlineSuccess({
     <div
       className={`prototype-success-inline${icon ? "" : " prototype-success-inline--text-only"}`}
     >
-      {icon && <CheckCircleIcon className="prototype-icon-24 prototype-success-icon" />}
+      {icon && <img alt="" className="prototype-icon-24" src={figmaSuccessSvg} />}
       <div
         className={`prototype-success-copy${singleLine ? " prototype-success-copy--single-line" : ""}`}
       >
@@ -105,7 +106,7 @@ function InfoBanner({ children }: { children: ReactNode }) {
     <div className="prototype-info-banner">
       <div className="prototype-info-content">
         <div className="prototype-info-icon-wrap">
-          <InfoCircleIcon className="prototype-icon-24 prototype-info-icon" />
+          <img alt="" className="prototype-icon-24" src={figmaInfoSvg} />
         </div>
         <div className="prototype-info-copy">{children}</div>
       </div>
@@ -167,14 +168,14 @@ export function UpgradePrototypePage({
         </div>
         <div className="prototype-user">
           <span>Juan</span>
-          <ChevronDownIcon className="prototype-icon-16" />
+          <img alt="" className="prototype-icon-16" src={figmaChevronDownSvg} />
         </div>
       </header>
 
       <main className="prototype-shell">
         <div className="prototype-content">
           <button className="prototype-back" type="button" aria-label="Go back">
-            <ChevronLeftIcon className="prototype-icon-24" />
+            <img alt="" className="prototype-icon-24" src={figmaBackSvg} />
           </button>
 
           <div className="prototype-title-block">
@@ -319,9 +320,9 @@ export function UpgradePrototypePage({
               </button>
             ))}
             <button className="prototype-locale" type="button">
-              <GlobeIcon className="prototype-icon-24" />
+              <img alt="" className="prototype-icon-24" src={figmaGlobeSvg} />
               <span>English</span>
-              <ChevronDownIcon className="prototype-icon-24" />
+              <img alt="" className="prototype-icon-24" src={figmaLocaleChevronSvg} />
             </button>
           </div>
 
