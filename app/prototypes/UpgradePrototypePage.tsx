@@ -161,7 +161,9 @@ export function UpgradePrototypePage({
   const renewalCycle = formatRenewal(billingCycle);
 
   return (
-    <div className="prototype-page">
+    <div
+      className={`prototype-page prototype-page--${variant.toLowerCase().replace("_", "-")}`}
+    >
       <header className="prototype-topbar">
         <div className="prototype-brand">
           <img alt="Envato" className="prototype-brand-logo" src={envatoLogoPng} />

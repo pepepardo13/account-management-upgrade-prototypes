@@ -467,6 +467,11 @@
   padding-top: 8px;
 }
 
+.prototype-page--a-alt .prototype-info-icon-wrap {
+  align-self: flex-start;
+  padding-top: 0;
+}
+
 .prototype-info-copy {
   color: var(--ds-color-content-primary);
   flex: 1;
